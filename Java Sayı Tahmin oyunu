@@ -1,0 +1,98 @@
+	import javax.swing.*;
+		import java.awt.*;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.util.Random;
+public class Sayitahminoyunu extends JFrame{
+	
+		private static final long serialVersionUID = 5L;
+		public static Object prompt1;
+		private JTextField userInput;
+		private JLabel yazi = new JLabel(" ");
+		private JLabel yazi2 = new JLabel(" ");
+		private int rastgelesayi;
+		private int hak = 0;
+		public Sayitahminoyunu() {
+		    super("SAYI TAHMİN OYUNU");
+		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    setLayout(new FlowLayout());
+		    Container c = getContentPane();
+		    JButton kullaniciButton = new JButton("Doğruluğunu kontrol et");
+		    JButton yenioyunButton = new JButton("Yeni Oyun");
+		    JButton cikisButton = new JButton("Çıkış");
+		    JLabel prompt1 = new JLabel("1-10 arası bir sayı giriniz.");
+		    JLabel prompt2 = new JLabel("Numarayı tahmin edebilir misin ?");
+		    JLabel prompt3 = new JLabel("Lütfen bir sayı girin: ");
+		    yazi = new JLabel(" ");
+		    yazi2 = new JLabel(" ");
+		    userInput = new JTextField(5);
+		    c.add(prompt1);
+		    c.add(prompt2);
+		    c.add(prompt3);
+		    c.add(userInput);
+		    c.add(kullaniciButton);
+		    c.add(yenioyunButton);
+		    c.add(cikisButton);
+		    c.add(yazi);
+		    c.add(yazi2);
+		    kullaniciButton.setMnemonic('T');
+		    yenioyunButton.setMnemonic('N');
+		    cikisButton.setMnemonic('Q');
+		    setSize(300, 200);
+		    setLocationRelativeTo(null);
+		    setVisible(true);
+		    setResizable(false);
+		    initializeNumber();
+		    GuessButtonHandler ghandler = new GuessButtonHandler(); 
+		    kullaniciButton.addActionListener(ghandler); 
+		    NewButtonHandler nhandler = new NewButtonHandler();
+		    yenioyunButton.addActionListener(nhandler);
+		    QuitButtonHandler qhandler = new QuitButtonHandler();
+		    cikisButton.addActionListener(qhandler);
+		} 
+		private void initializeNumber() {
+		    rastgelesayi = new Random().nextInt(10);
+		}
+		private class GuessButtonHandler implements ActionListener {
+		    public void actionPerformed(ActionEvent e) {
+		    	int tutulansayi;
+		        int diff;
+		        int Difference;
+		        try {
+		        	tutulansayi = Integer.parseInt(userInput.getText().trim());
+		            hak++;
+
+		            if (tutulansayi == rastgelesayi) {
+		                JOptionPane.showMessageDialog(null, "Sayiyi doğru tahmin ettin! "
+		                        + hak + ".denemede buldun", "Tutulan Sayı: "
+		                        + rastgelesayi, JOptionPane.INFORMATION_MESSAGE);
+		                initializeNumber();
+		                return;
+		            }
+		            
+		        } catch (NumberFormatException ex) {
+		            yazi.setText("Oyunu oynamak için lütfen bir sayı giriniz!");
+		        }
+		        if(hak>=10)
+		        {
+		        	JOptionPane.showMessageDialog(null,"Hakkınız bitmiştir.");
+		        }
+		    }
+		} 
+			private class NewButtonHandler implements ActionListener {
+		    public void actionPerformed(ActionEvent e) {
+		    	Sayitahminoyunu app = new Sayitahminoyunu();
+		    }
+		} 
+			private class QuitButtonHandler implements ActionListener {
+		    public void actionPerformed(ActionEvent e) {
+		        System.exit(0);
+		    }
+		} 
+			private void setBackgroundColor(Color RED) {
+		    getContentPane().setBackground(RED);
+		}
+			public static void main(String args[]) {
+				Sayitahminoyunu app = new Sayitahminoyunu();
+			}
+		}

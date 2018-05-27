@@ -1,0 +1,29 @@
+package Mor;
+
+import java.util.Scanner;
+
+public class Mor1 {
+	 public static void main(String[] args) {
+		 {
+		        int a,b,i,max,min,Ebob=1,Ekok=1;
+		        Scanner mor = new Scanner(System.in);
+		        System.out.println("EBOB ve EKOK hesabı için iki değer giriniz.");
+		        System.out.print("İlk değeri giriniz = ");
+		        a = mor.nextInt();
+		        System.out.print("İkinci değeri giriniz = ");
+		        b = mor.nextInt();
+		 
+		        max = (a>b) ? a:b;
+		        min = (a>b) ? b:a;
+		 
+		        for(i=max;i>=min;i--)
+		        {
+		            if((min%i==0)&&(max%i==0))
+		            {
+		                Ebob = Ebob * i;
+		            }
+		            Ekok = (a*b)/Ebob;
+		        }
+		        System.out.println("EBOB = "+Ebob+" EKOK = "+Ekok+"\n:)");
+		    }
+		}}

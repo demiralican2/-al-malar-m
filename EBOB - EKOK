@@ -1,8 +1,8 @@
-package Mor;
+package uygulama;
 
 import java.util.Scanner;
 
-public class Mor1 {
+public class uygulama {
 	 public static void main(String[] args) {
 		 {
 		        int a,b,i,max,min,Ebob=1,Ekok=1;
